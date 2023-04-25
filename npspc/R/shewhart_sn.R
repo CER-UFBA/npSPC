@@ -12,7 +12,7 @@
 #' column represents a group. Default is FALSE (each row is a group).
 #' @param side a character string indicating the alternative
 #' hypothesis for detecting special cause variation.
-#' It can be "two.sided", "lower", or "upper". Default is "two.sided".
+#' It can be "two.sided", "lower", or "upper". Required.
 #'
 #' @return This function returns a Shewhart SN chart.
 #'
