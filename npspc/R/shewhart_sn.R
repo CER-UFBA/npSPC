@@ -88,5 +88,5 @@ shewhart_sn = function(X, med = NULL, far = .0027, group_by_col = FALSE,
 
 }
 
-X = matrix(rnorm(100), nrow = 20)
-shewhart_sn(X, group_by_col = F, side = 'lower')
+#X = matrix(rnorm(100), nrow = 20)
+#shewhart_sn(X, group_by_col = F, side = 'lower')
