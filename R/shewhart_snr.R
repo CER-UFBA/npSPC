@@ -6,9 +6,13 @@
 #' @param mu0 the process median, if known.
 #' If NULL, it will be estimated using the mean of the observations.
 #' @param alpha The significance level for the control limits (default: 0.0027).
-#' @param group_by_col Logical indicating whether to treat columns as different groups (default: FALSE).
-#' @param exact Logical indicating whether to use the exact distribution for control limits calculation (default: FALSE).
-#' @param side A character string specifying the alternative hypothesis for the test ("two.sided", "greater", or "less") (default: "two.sided").
+#' @param group_by_col Logical indicating whether to treat 
+#' columns as different groups (default: FALSE).
+#' @param exact Logical indicating whether to use the exact 
+#' distribution for control limits calculation (default: FALSE).
+#' @param side A character string specifying the alternative 
+#' hypothesis for the test ("two.sided", "greater", or "less") 
+#' (default: "two.sided").
 #' @examples
 #' X <- matrix(rnorm(100), nrow = 10)
 #' shewhart_snr(X, mu0 = 0, alpha = 0.01, group_by_col = TRUE)
@@ -53,6 +57,7 @@ shewhart_snr = function(X, mu0 = NULL, alpha = .0027,
 
   plot_chart(statistics = SRi, ic = 0,
              ucl = Limits$UCL, lcl = Limits$LCL,
-             name = "SRi (Wilcoxon signed-rank)")
+             name = "SRi (Wilcoxon signed-rank)",
+             side = side)
 
 }

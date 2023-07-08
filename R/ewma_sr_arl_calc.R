@@ -1,7 +1,7 @@
-#' ARL0 Estimation for EWMA SN Control Chart
+#' ARL Calculation for EWMA Control Chart Based on Signed-Ranks Statistic
 #'
-#' This function estimates the Average Run Length (ARL0) for the 
-#' EWMA SN control chart based on simulations.
+#' This function calculates the Average Run Length (ARL) 
+#' for the EWMA Control Chart based on the signed-ranks statistic.
 #'
 #' @param n The sample size.
 #' @param lambda The smoothing parameter for the EWMA calculation. 
@@ -12,20 +12,19 @@
 #' @param side The side of the control chart, can be "two.sided", 
 #' "lower", or "upper".
 #'
-#' @return The estimated ARL0 value based on the simulations.
+#' @return The average run length (ARL) for the EWMA Control Chart.
 #'
 #' @examples
-#' # Estimate ARL0 for EWMA SN control chart
-#' ewma_sn_arl_calc(n = 1, lambda = 0.1, L = 2.667, n_sim = 500, 
-#' side = 'upper')
+#' # Calculate the ARL for EWMA Control Chart based on signed-ranks statistic
+#' ewma_sr_arl_calc(n = 10, lambda = 0.1, L = 2.794, 
+#'                  n_sim = 100, side = "two.sided")
 #'
-#' @import purrr
-#' @importFrom stats mean
+#' @import stats
 #'
 #' @export
 #' 
 
-ewma_sn_arl_calc <- function(n,
+ewma_sr_arl_calc <- function(n,
                              lambda = 0.05,
                              L = 2.472,
                              t = 10000,
@@ -34,7 +33,7 @@ ewma_sn_arl_calc <- function(n,
   arl <- rep(NA, n_sim)
   X <- array(rnorm(n * t * n_sim), dim = c(n, t, n_sim))
   for (i in 1:n_sim) {
-    arl[i] <- ewma_sn(X = matrix(X[, , i], nrow = n, ncol = t),
+    arl[i] <- ewma_sr(X = matrix(X[, , i], nrow = n, ncol = t),
                       lambda = lambda, L = L,
                       plot = FALSE, side = side)
     if (is.na(arl[i])) {
