@@ -2,27 +2,33 @@
 % Please edit documentation in R/plot_chart.R
 \name{plot_chart}
 \alias{plot_chart}
-\title{Plot Control Chart}
+\title{Control Chart Plotting Function}
 \usage{
-plot_chart(ic, statistics, ucl, lcl, name = NULL)
+plot_chart(ic, statistics, statistics2 = NULL, ucl, lcl, name = NULL, side)
 }
 \arguments{
-\item{ic}{The value for the process center or target.}
+\item{ic}{The in-control value for the control chart.}
 
-\item{statistics}{A numeric vector of statistics to be plotted.}
+\item{statistics}{A numeric vector of control statistics.}
 
-\item{ucl}{The upper control limit.}
+\item{statistics2}{A numeric vector of additional control statistics (optional).}
 
-\item{lcl}{The lower control limit.}
+\item{ucl}{The upper control limit value.}
 
-\item{name}{A character string specifying the name of the statistics (default: NULL).}
+\item{lcl}{The lower control limit value.}
+
+\item{name}{The name of the control chart (optional).}
+
+\item{side}{The side of the chart to plot. Must be one of 'two.sided', 'lower', or 'upper'.}
 }
 \description{
-Plots a control chart with control limits and statistics.
+Plots the control chart based on the specified statistics and control limits.
 }
-\examples{
-statistics <- c(1.2, 1.5, 1.4, 1.7, 2.0)
-ucl <- 2.5
-lcl <- 1.0
-plot_chart(ic = 1.8, statistics = statistics, ucl = ucl, lcl = lcl, name = "Data")
+\details{
+The function plots the control chart based on the specified control statistics and control limits.
+  It uses the `plot` function to create a line plot of the statistics.
+  If additional statistics (`statistics2`) are provided, they are also plotted.
+  The control limits are represented by dashed lines.
+  The in-control value (`ic`) is represented by a dotted line.
+  The points on the plot are colored red if they are outside the control limits, indicating an out-of-control condition.
 }

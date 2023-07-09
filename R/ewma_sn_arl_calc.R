@@ -1,30 +1,29 @@
-<<<<<<< HEAD
 #' ARL0 Estimation for EWMA SN Control Chart
 #'
-#' This function estimates the Average Run Length (ARL0) for the 
+#' This function estimates the Average Run Length (ARL0) for the
 #' EWMA SN control chart based on simulations.
 #'
 #' @param n The sample size.
-#' @param lambda The smoothing parameter for the EWMA calculation. 
+#' @param lambda The smoothing parameter for the EWMA calculation.
 #' Default is 0.05.
 #' @param L The control limit multiplier for the UCL and LCL calculation.
 #' @param t The number of samples (lower values are problematic).
 #' @param n_sim The number of simulations to perform.
-#' @param side The side of the control chart, can be "two.sided", 
+#' @param side The side of the control chart, can be "two.sided",
 #' "lower", or "upper".
 #'
 #' @return The estimated ARL0 value based on the simulations.
 #'
 #' @examples
 #' # Estimate ARL0 for EWMA SN control chart
-#' ewma_sn_arl_calc(n = 1, lambda = 0.1, L = 2.667, n_sim = 500, 
+#' ewma_sn_arl_calc(n = 1, lambda = 0.1, L = 2.667, n_sim = 500,
 #' side = 'upper')
 #'
 #' @import purrr
 #' @importFrom stats mean
 #'
 #' @export
-#' 
+#'
 
 ewma_sn_arl_calc <- function(n,
                              lambda = 0.05,
@@ -45,10 +44,9 @@ ewma_sn_arl_calc <- function(n,
       break
     }
   }
-  
+
   mean(arl, na.rm = TRUE)
 }
-=======
 #' Average Run Length (ARL) Calculation for EWMA Control Chart
 #'
 #' Calculates the average run length (ARL) for the Exponentially Weighted Moving Average (EWMA) control chart.
@@ -107,4 +105,3 @@ ewma_sn_arl_calc <- function(lambda = 0.1,
 
   return(runlength)
 }
->>>>>>> 1badc70a52d5cdbe13c8bdbe890e11fc0439214b

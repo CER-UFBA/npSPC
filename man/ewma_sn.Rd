@@ -2,8 +2,17 @@
 % Please edit documentation in R/ewma_sn.R
 \name{ewma_sn}
 \alias{ewma_sn}
-\title{Exponentially Weighted Moving Average (EWMA) for Grouped Data}
+\title{EWMA SN Control Chart for Grouped Data}
 \usage{
+ewma_sn(
+  X,
+  med = 0,
+  lambda = 0.05,
+  L = 2.667,
+  group_by_col = FALSE,
+  side = "two.sided"
+)
+
 ewma_sn(
   X,
   med = 0,
@@ -27,11 +36,23 @@ If TRUE, the matrix will be transposed. Default is FALSE.}
 
 \item{side}{The side of the chart to plot. Must be one of 'two.sided', 'lower', or 'upper'.
 Default is 'two.sided'.}
+
+\item{plot}{A logical value indicating whether to plot the control chart.
+Default is TRUE.}
 }
 \value{
+If `plot` is set to TRUE,
+the function will generate a control chart plot.
+If `plot` is set to FALSE,
+the function will return the first out-of-control point (index)
+based on the specified `side`.
+
 The function generates a control chart plot and returns the average run length (ARL).
 }
 \description{
+This function calculates the Exponentially Weighted Moving Average
+(EWMA) control chart based on the signs (SN) statistic for grouped data.
+
 Calculates the EWMA for grouped data based on signs.
 }
 \details{
@@ -43,6 +64,11 @@ The function calculates the EWMA based on signs for grouped data.
   and calculates the average run length (ARL) based on simulated data.
 }
 \examples{
+# Generate random grouped data
+X <- matrix(rnorm(100), nrow = 10)
+# Create the EWMA SN control chart
+ewma_sn(X)
+
 # Generate example data
 set.seed(42)
 X <- matrix(rnorm(100), nrow = 10)

@@ -1,44 +1,48 @@
-#' Plot Control Chart
+#' Control Chart Plotting Function
 #'
-#' Plots a control chart with control limits and statistics.
+#' Plots the control chart based on the specified statistics and control limits.
 #'
-#' @param ic The value for the process center or target.
-#' @param statistics A numeric vector of statistics to be plotted.
-#' @param ucl The upper control limit.
-#' @param lcl The lower control limit.
-#' @param name A character string specifying the name of the statistics 
-#' (default: NULL).
-#' @examples
-#' statistics <- c(1.2, 1.5, 1.4, 1.7, 2.0)
-#' ucl <- 2.5
-#' lcl <- 1.0
-#' plot_chart(ic = 1.8, statistics = statistics, ucl = ucl, lcl = lcl, 
-#' name = "Data")
+#' @param ic The in-control value for the control chart.
+#' @param statistics A numeric vector of control statistics.
+#' @param statistics2 A numeric vector of additional control statistics (optional).
+#' @param ucl The upper control limit value.
+#' @param lcl The lower control limit value.
+#' @param name The name of the control chart (optional).
+#' @param side The side of the chart to plot. Must be one of 'two.sided', 'lower', or 'upper'.
+#'
+#' @details The function plots the control chart based on the specified control statistics and control limits.
+#'   It uses the `plot` function to create a line plot of the statistics.
+#'   If additional statistics (`statistics2`) are provided, they are also plotted.
+#'   The control limits are represented by dashed lines.
+#'   The in-control value (`ic`) is represented by a dotted line.
+#'   The points on the plot are colored red if they are outside the control limits, indicating an out-of-control condition.
+#'
+#' @importFrom graphics plot lines points abline
 #' @export
-plot_chart = function(ic, statistics, statistics2 = NULL, 
+plot_chart = function(ic, statistics, statistics2 = NULL,
                       ucl, lcl, name = NULL, side){
   plot(1:length(statistics), statistics, type = c('l'),
-       ylim = c(min(lcl, min(statistics, na.rm = T), min(statistics2, na.rm = T )), 
-                max(ucl, max(statistics, na.rm = T), max(statistics2, na.rm = T))),
+       ylim = c(min(lcl, statistics, statistics2 ),
+                max(ucl, statistics, statistics2)),
        xlab = "Groups", ylab = paste0(name, " Statistics"),
        main = "Control Chart")
 
   if(!is.null(statistics2)){
     lines(1:length(statistics2), statistics2)
     points(1:length(statistics2), statistics2, pch = 16, cex = 0.8,
-           col = ifelse((statistics2 <= lcl) | 
+           col = ifelse((statistics2 <= lcl) |
                           (statistics2 >= ucl), "red", "black"))
     lines(1:length(statistics2), ucl, lty = 2)
     lines(1:length(statistics2), lcl, lty = 2)
   }
-  
+
   abline(h = ic, lty = 3)
   if(side == 'two.sided'){
     points(1:length(statistics), statistics, pch = 16, cex = 0.8,
-           col = ifelse((statistics <= lcl) | 
+           col = ifelse((statistics <= lcl) |
                           (statistics >= ucl), "red", "black"))
     lines(1:length(statistics), ucl, lty = 2)
-    lines(1:length(statistics), lcl, lty = 2)  
+    lines(1:length(statistics), lcl, lty = 2)
   } else if(side == 'upper'){
     points(1:length(statistics), statistics, pch = 16, cex = 0.8,
            col = ifelse((statistics >= ucl), "red", "black"))
@@ -46,7 +50,7 @@ plot_chart = function(ic, statistics, statistics2 = NULL,
   } else{
     points(1:length(statistics), statistics, pch = 16, cex = 0.8,
            col = ifelse((statistics <= lcl), "red", "black"))
-    lines(1:length(statistics), lcl, lty = 2)  
+    lines(1:length(statistics), lcl, lty = 2)
   }
-  
+
 }

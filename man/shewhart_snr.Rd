@@ -21,11 +21,15 @@ If NULL, it will be estimated using the mean of the observations.}
 
 \item{alpha}{The significance level for the control limits (default: 0.0027).}
 
-\item{group_by_col}{Logical indicating whether to treat columns as different groups (default: FALSE).}
+\item{group_by_col}{Logical indicating whether to treat 
+columns as different groups (default: FALSE).}
 
-\item{exact}{Logical indicating whether to use the exact distribution for control limits calculation (default: FALSE).}
+\item{exact}{Logical indicating whether to use the exact 
+distribution for control limits calculation (default: FALSE).}
 
-\item{side}{A character string specifying the alternative hypothesis for the test ("two.sided", "greater", or "less") (default: "two.sided").}
+\item{side}{A character string specifying the alternative 
+hypothesis for the test ("two.sided", "greater", or "less") 
+(default: "two.sided").}
 }
 \description{
 Calculates the Shewhart Chart using the Wilcoxon Signed-Rank Test.

@@ -2,8 +2,10 @@
 % Please edit documentation in R/ewma_sn_arl_calc.R
 \name{ewma_sn_arl_calc}
 \alias{ewma_sn_arl_calc}
-\title{Average Run Length (ARL) Calculation for EWMA Control Chart}
+\title{ARL0 Estimation for EWMA SN Control Chart}
 \usage{
+ewma_sn_arl_calc(lambda = 0.1, L = 2.667, n = 1, sim = 10000)
+
 ewma_sn_arl_calc(lambda = 0.1, L = 2.667, n = 1, sim = 10000)
 }
 \arguments{
@@ -14,11 +16,23 @@ ewma_sn_arl_calc(lambda = 0.1, L = 2.667, n = 1, sim = 10000)
 \item{n}{The number of observations in each simulation. Default is 1.}
 
 \item{sim}{The number of simulations to perform. Default is 10000.}
+
+\item{t}{The number of samples (lower values are problematic).}
+
+\item{n_sim}{The number of simulations to perform.}
+
+\item{side}{The side of the control chart, can be "two.sided",
+"lower", or "upper".}
 }
 \value{
+The estimated ARL0 value based on the simulations.
+
 A numeric vector representing the average run length (ARL) for each simulation.
 }
 \description{
+This function estimates the Average Run Length (ARL0) for the
+EWMA SN control chart based on simulations.
+
 Calculates the average run length (ARL) for the Exponentially Weighted Moving Average (EWMA) control chart.
 }
 \details{
@@ -28,6 +42,10 @@ The function calculates the average run length (ARL) for the EWMA control chart.
   The ARL is the number of observations until the control chart signals an out-of-control condition.
 }
 \examples{
+# Estimate ARL0 for EWMA SN control chart
+ewma_sn_arl_calc(n = 1, lambda = 0.1, L = 2.667, n_sim = 500,
+side = 'upper')
+
 # Calculate ARL for EWMA control chart
 ewma_sn_arl_calc(lambda = 0.1, L = 2.667, n = 1, sim = 10000)
 

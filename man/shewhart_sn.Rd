@@ -2,56 +2,31 @@
 % Please edit documentation in R/shewhart_sn.R
 \name{shewhart_sn}
 \alias{shewhart_sn}
-\title{Shewhart SN chart}
+\title{Shewhart Control Chart Based on SN Statistic}
 \usage{
-shewhart_sn(
-  X,
-  med = NULL,
-  far = 0.0027,
-  group_by_col = FALSE,
-  side = "two.sided"
-)
+shewhart_sn(X, med = 0, far = 0.0027, group_by_col = FALSE, side = "two.sided")
 }
 \arguments{
-\item{X}{a matrix or data frame of observations.}
+\item{X}{A matrix or data frame of observations.}
 
-\item{med}{the process median, if known.
-If NULL, it will be estimated using the median of the observations.}
+\item{med}{The center value for the control chart. Default is 0.}
 
-\item{far}{the false alarm rate for detecting special cause variation.
-Default is 0.0027.}
+\item{far}{The false alarm rate for control limits calculation. Default is 0.0027.}
 
-\item{group_by_col}{a logical indicating whether each
-column represents a group. Default is FALSE (each row is a group).}
+\item{group_by_col}{Logical indicating whether the observations are grouped by column. 
+If TRUE, the observations are transposed before further processing. Default is FALSE.}
 
-\item{side}{a character string indicating the alternative
-hypothesis for detecting special cause variation.
-It can be "two.sided", "lower", or "upper". Required.}
+\item{side}{The side of the control chart, can be "two.sided", "lower", or "upper".}
 }
 \value{
-This function returns a Shewhart SN chart.
+The Average Run Length (ARL) for the control chart.
 }
 \description{
-This function produces a Shewhart SN chart to monitor the process median
-in the presence of special cause variation.
-}
-\details{
-The Shewhart SN chart is a type of control chart that
-monitors the process median.
-It is based on the difference between the number of observations
-above and below the process median, called the SN statistic.
-The chart has two horizontal lines that represent the control
-limits for the SN statistic, which are determined based on the
-false alarm rate specified by the user.
-If the SN statistic exceeds the control limits,
-it indicates the presence of special cause variation.
+This function constructs and plots a Shewhart Control Chart based on the SN statistic.
 }
 \examples{
-# Generate random data
-set.seed(123)
-X <- matrix(rnorm(100), nrow = 10)
-
-# Create a Shewhart SN chart
-shewhart_sn(X)
+# Create and plot a Shewhart Control Chart based on SN statistic
+data <- matrix(rnorm(100), ncol = 2)
+shewhart_sn(data, med = 0, far = 0.0027, group_by_col = FALSE, side = "two.sided")
 
 }
