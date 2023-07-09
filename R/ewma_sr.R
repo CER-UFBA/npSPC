@@ -52,7 +52,7 @@ ewma_sr <- function(X,
   SRi <- rep(NA, m)
   Z <- rep(0, m + 1)
   for(i in 1:m){
-    t_plus <- wilcox.test(X[, i])$statistic
+    t_plus <- wilcox.test(X[, i], mu = med)$statistic
     SRi[i] <- 2 * t_plus - (n * (n + 1)) / 2
     Z[i + 1] <- lambda * SRi[i] + (1 - lambda) * Z[i]
   }
@@ -102,4 +102,3 @@ ewma_sr <- function(X,
     }
   }
 }
-

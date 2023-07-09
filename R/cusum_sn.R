@@ -22,12 +22,15 @@
 #' the function will return the first out-of-control point (index)
 #' based on the specified `side`.
 #'
-#' @details The function calculates the CUSUM Control Chart for grouped data based on signs.
-#'   It calculates the number of observations above and below the median for each group,
-#'   and then applies the CUSUM algorithm to detect changes in the process.
-#'   The control limits are determined by the value of `h` and the `side` parameter.
-#'   The function can plot the control chart using the `plot_chart` function or
-#'   return the index of the first out-of-control observation.
+#' @details The function calculates the CUSUM Control Chart 
+#' for grouped data based on signs. It calculates the number of observations 
+#' above and below the median for each group, and then applies the CUSUM 
+#' algorithm to detect changes in the process.
+#' The control limits are determined by the value 
+#' of `h` and the `side` parameter.
+#' The function can plot the control chart 
+#' using the `plot_chart` function or return the index 
+#' of the first out-of-control observation.
 #'
 #' @seealso \code{\link{plot_chart}}
 #'
@@ -37,7 +40,8 @@
 #' X <- matrix(rnorm(100), nrow = 20)
 #'
 #' # Calculate CUSUM Control Chart for grouped data
-#' cusum_sn(X, med = 0, k = 0.5, h = 5, group_by_col = FALSE, plot = TRUE, side = 'two.sided')
+#' cusum_sn(X, med = 0, k = 0.5, h = 5, group_by_col = FALSE, 
+#' plot = TRUE, side = 'two.sided')
 #'
 #' @importFrom graphics plot
 #' @importFrom stats colSums
@@ -59,7 +63,7 @@ cusum_sn = function(X,
   n_less = colSums(X < med)
 
   Sn = n_plus - n_less
-  SNplus = SNminus = c(0, rep(0, length(Sn) - 1))
+  #SNplus = SNminus = c(0, rep(0, length(Sn) - 1))
 
   n = nrow(X)
   m = ncol(X)
@@ -120,3 +124,5 @@ cusum_sn = function(X,
   }
 
 }
+
+cusum_sn(rnorm(1000) |> matrix(nrow = 20))

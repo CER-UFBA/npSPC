@@ -1,77 +1,98 @@
-#' Shewhart Control Chart based on Mann-Whitney Statistic
+#' Shewhart Chart Based on Precedence Statistic
 #'
-#' Calculates and plots the Shewhart Control Chart based on the Mann-Whitney statistic.
+#' This function generates a Shewhart control chart based on the precedence 
+#' statistic for a given set of data.
 #'
-#' @param X A numeric matrix or data frame containing the data.
-#' @param far The desired false alarm rate for the control chart. Default is 0.0027.
-#' @param group_by_col A logical value indicating whether to treat columns as groups.
-#'   If TRUE, the matrix will be transposed. Default is FALSE.
-#' @param phase1_num_samples The number of samples to include in phase 1. Default is NULL.
-#' @param side The side of the chart to plot. Must be one of 'two.sided', 'lower', or 'upper'.
-#'   Default is 'two.sided'.
+#' @param X The reference value.
+#' @param Y The data matrix or vector.
+#' @param j The percentile value to calculate the 
+#' precedence statistic (default: round(nrow(Y)/2)).
+#' @param far The false alarm rate (default: 0.0027).
+#' @param group_by_col Logical value indicating whether to group the data by 
+#' columns (default: FALSE).
+#' @param side The side of the control chart limits 
+#' ("two.sided", "lower", or "upper") (default: "two.sided").
 #'
-#' @details The function calculates the Shewhart Control Chart based on the Mann-Whitney statistic.
-#'   It divides the data into two phases: phase 1 and phase 2.
-#'   Phase 1 consists of the specified number of samples, and phase 2 consists of the remaining samples.
-#'   The Mann-Whitney statistic is computed between each sample in phase 2 and the phase 1 samples.
-#'   The control limits are calculated based on the desired false alarm rate (far).
-#'   The control chart is then plotted using the plot_chart function.
+#' @return A character string indicating the used ARL0 (Average Run Length).
 #'
-#' @seealso \code{\link{plot_chart}}
+#' @details The \code{shewhart_prec} function generates a Shewhart control 
+#' chart based on the precedence statistic.
+#' The function calculates the precedence statistic for a given set of data 
+#' and constructs the control chart with
+#' control limits based on the false alarm rate and the specified side. 
+#' It plots the control chart and returns
+#' the used ARL0 (Average Run Length) as a character string.
 #'
 #' @examples
-#' # Generate example data
-#' set.seed(42)
-#' X <- matrix(rnorm(100), nrow = 20)
+#' X <- rnorm(100)
+#' Y <- matrix(rnorm(100), ncol = 5)
+#' shewhart_prec(X, Y)
 #'
-#' # Calculate Shewhart Control Chart based on Mann-Whitney statistic
-#' shewhart_mw(X, far = 0.0027, group_by_col = FALSE, phase1_num_samples = 2, side = 'two.sided')
+#' @importFrom stats quantile
 #'
-#' @importFrom graphics plot
-#' @importFrom stats wilcox.test
-#' @importFrom base warning stop
 #' @export
-shewhart_mw <- function(X, far = 0.0027, group_by_col = FALSE,
-                        phase1_num_samples = NULL,
+
+shewhart_mw <- function(X,
+                        Y,
+                        cl,
+                        far = 0.0027,
+                        group_by_col = FALSE,
+                        plot = T,
                         side = "two.sided") {
-
-  X = X |> data.frame()
-
-  if (group_by_col) {
-    X = t(X)
+  
+  if(group_by_col){
+    Y <- t(Y)
   }
-
-  if (is.null(phase1_num_samples)) {
-    phase1_num_samples = 1
+  
+  X = c(X)
+  m = length(X)
+  n = nrow(Y)
+  
+  if(cl < m*n/2 & side != 'lower'){
+    warning(paste("Your cl is lower than the minimum UCL" , 
+                  "for upper and two sided charts.",
+                  "\nWe are using the minimum possible UCL."))
+    cl = m*n/2 + 1
   }
-
-  phase1 = X[, 1:phase1_num_samples] |> unlist()
-  phase2 = X[, -seq(1:phase1_num_samples)]
-
-  if (any(unlist(phase1) == unlist(phase2)) | any(is.na(X))) {
-    warning("There is a tie or NA in your data. Caution with your results.")
-  }
-
-  mw_statistics = sapply(phase2, function(x) wilcox.test(phase1, x)$statistic)
-
-  ucl = length(phase1) * sapply(phase2, function(x) sum(!is.na(x))) - ucl
-
+  
+  U = unlist(lapply(apply(Y, 2, wilcox.test, X), '[', 1))
+  
   if (side == "two.sided") {
-    a = 2 * quantil - nrow(X)
-    la = -a
+    
+    ucl = rep(cl, length(U))
+    lcl = rep(m*n - cl, length(U))
+    
   } else if (side == "lower") {
-    a = quantil
-    la = NULL
+
+    ucl <- NULL
+    lcl <- rep(cl, length(U))
+    
   } else if (side == "upper") {
-    a = NULL
-    la = -quantil
+    
+    ucl = rep(cl, length(U))
+    lcl <- NULL
+    
   } else {
-    stop("Invalid argument for side. Must be one of 'two.sided', 'lower', or 'upper'")
+    stop("Invalid argument for side. 
+         Must be one of 'two.sided', 'lower', or 'upper'")
   }
-
-  arl = round(1 / far)
-
-  plot_chart(statistics = mw_statistics, ic = median(mw_statistics),
-             ucl = ucl, lcl = lcl,
-             name = "Shewhart MW (Based on Mann-Whitney Statistic)")
+  
+  if (plot) {
+    plot_chart(
+      side = side,
+      statistics = U,
+      ic = m*n/2,
+      ucl = ucl,
+      lcl = lcl,
+      name = "Shewhart Control Chart (Based on Mann Whitney Statistics)"
+    )
+  } else {
+    if (side == 'two.sided') {
+      return(which(U > ucl | U < lcl)[1])
+    } else if (side == 'upper') {
+      return(which(U > ucl)[1])
+    } else {
+      return(which(U < lcl)[1])
+    }
+  }
 }
