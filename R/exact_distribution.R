@@ -14,11 +14,30 @@ Exact_distribution = function(n, alpha, side = "two.sided"){
   ranks = rowSums(Matrix_aux)
   dist = table(ranks)/(2^n)
 
-  maxim = max(which(cumsum(dist) <= alpha/2), 1)
-  LCL = as.numeric(names(dist[maxim]))
-  UCL = abs(LCL)
+  maxim = min(as.numeric(names(cumsum(dist))[cumsum(dist) >=  1 - alpha]),
+              (n * (n + 1))/2)
+  LCL = -maxim
+  UCL = maxim
 
+  if(side == "lower"){
+    UCL = NULL
+  } else if(side == "upper"){
+    LCL = NULL
+  }
   return(list('Ranks' = ranks,
               'Distribution' = dist,
               'UCL' = UCL, 'LCL' = LCL))
 }
+
+
+
+a = (Exact_distribution(13, 1/500)$Distribution)
+a
+which(cumsum(a) <= 1/500/2)
+
+barplot(Exact_distribution(13, 1/500)$Distribution)
+
+Limits_asymptotical(21, 0.001)
+
+Exact_distribution(21, 0.001)
+
