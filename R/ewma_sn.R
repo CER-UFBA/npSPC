@@ -86,7 +86,7 @@ ewma_sn = function(X,
     plot_chart(
       side = side,
       statistics = Z,
-      ic = 0,
+      ic = rep(0, length(Z)),
       ucl = ucl,
       lcl = lcl,
       name = "EWMA for grouped data (Based on signs)"

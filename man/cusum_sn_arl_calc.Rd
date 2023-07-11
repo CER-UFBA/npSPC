@@ -35,12 +35,18 @@ The average run length (ARL) for the CUSUM Control Chart.
 Calculates the average run length (ARL) for the CUSUM Control Chart.
 }
 \details{
-The function calculates the average run length (ARL) for the CUSUM Control Chart.
-  It performs multiple simulations based on the specified parameters and returns the average ARL.
-  Each simulation consists of generating random data with the given number of observations (`n`)
+The function calculates the average run length (ARL) for
+  the CUSUM Control Chart.
+  It performs multiple simulations based on the specified
+  parameters and returns the average ARL.
+  Each simulation consists of generating random data with
+  the given number of observations (`n`)
   and calculating the CUSUM Control Chart using the `cusum_sn` function.
-  The ARL is the average number of observations until the control chart signals an out-of-control condition.
-  If NA values occur during the simulations, a warning message will be displayed, and those NA values will be excluded from the calculation.
+  The ARL is the average number of observations until the control
+  chart signals an out-of-control condition.
+  If NA values occur during the simulations, a warning message
+  will be displayed, and those NA values will be excluded from the
+  calculation.
 }
 \examples{
 # Calculate ARL for CUSUM Control Chart

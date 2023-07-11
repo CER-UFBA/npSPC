@@ -21,6 +21,10 @@
 #' @export
 plot_chart = function(ic, statistics, statistics2 = NULL,
                       ucl, lcl, name = NULL, side){
+  if(length(ic) != length(statistics)){
+    ic = rep(ic, length(statistics))
+  }
+
   plot(1:length(statistics), statistics, type = c('l'),
        ylim = c(min(lcl, statistics, statistics2 ),
                 max(ucl, statistics, statistics2)),
@@ -36,7 +40,7 @@ plot_chart = function(ic, statistics, statistics2 = NULL,
     lines(1:length(statistics2), lcl, lty = 2)
   }
 
-  abline(h = ic, lty = 3)
+  lines(1:length(statistics), ic, lty = 3)
   if(side == 'two.sided'){
     points(1:length(statistics), statistics, pch = 16, cex = 0.8,
            col = ifelse((statistics <= lcl) |
