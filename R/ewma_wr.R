@@ -63,7 +63,7 @@ ewma_wr = function(X,
 
   #Nplus = ave(Nplus, cumsum(Nplus == 0), FUN = cumsum)
   #Nminus = ave(Nminus, cumsum(Nminus == 0), FUN = cumsum)
-  cl = mu_W
+  cl = rep(mu_W, length(Z))
   if (side == "two.sided") {
     aux = L * sqrt(sigma_W * (lambda / (2 - lambda) * (1 - (1 - lambda)^(2*(1:j)))) )
     ucl = cl + aux
@@ -92,7 +92,7 @@ ewma_wr = function(X,
       ic = cl,
       ucl = ucl,
       lcl = lcl,
-      name = "Cusum (Based on the Mann-Whitney)"
+      name = "Ewma (Based on the Mann-Whitney)"
     )
   } else{
     if(side == 'two.sided'){
