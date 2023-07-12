@@ -21,34 +21,34 @@ shewhart_mw(
 
 \item{far}{The false alarm rate (default: 0.0027).}
 
-\item{group_by_col}{Logical value indicating whether to group the data by 
+\item{group_by_col}{Logical value indicating whether to group the data by
 columns (default: FALSE).}
 
-\item{side}{The side of the control chart limits 
+\item{side}{The side of the control chart limits
 ("two.sided", "lower", or "upper") (default: "two.sided").}
 
-\item{j}{The percentile value to calculate the 
+\item{j}{The percentile value to calculate the
 precedence statistic (default: round(nrow(Y)/2)).}
 }
 \value{
 A character string indicating the used ARL0 (Average Run Length).
 }
 \description{
-This function generates a Shewhart control chart based on the precedence 
+This function generates a Shewhart control chart based on the precedence
 statistic for a given set of data.
 }
 \details{
-The \code{shewhart_prec} function generates a Shewhart control 
+The \code{shewhart_prec} function generates a Shewhart control
 chart based on the precedence statistic.
-The function calculates the precedence statistic for a given set of data 
+The function calculates the precedence statistic for a given set of data
 and constructs the control chart with
-control limits based on the false alarm rate and the specified side. 
+control limits based on the false alarm rate and the specified side.
 It plots the control chart and returns
 the used ARL0 (Average Run Length) as a character string.
 }
 \examples{
 X <- rnorm(100)
 Y <- matrix(rnorm(100), ncol = 5)
-shewhart_prec(X, Y)
+shewhart_mw(X, Y)
 
 }

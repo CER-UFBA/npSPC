@@ -46,14 +46,14 @@ based on the specified `side`.
 Calculates and plots the CUSUM Control Chart for grouped data based on signs.
 }
 \details{
-The function calculates the CUSUM Control Chart 
-for grouped data based on signs. It calculates the number of observations 
-above and below the median for each group, and then applies the CUSUM 
+The function calculates the CUSUM Control Chart
+for grouped data based on signs. It calculates the number of observations
+above and below the median for each group, and then applies the CUSUM
 algorithm to detect changes in the process.
-The control limits are determined by the value 
+The control limits are determined by the value
 of `h` and the `side` parameter.
-The function can plot the control chart 
-using the `plot_chart` function or return the index 
+The function can plot the control chart
+using the `plot_chart` function or return the index
 of the first out-of-control observation.
 }
 \examples{
@@ -62,7 +62,7 @@ set.seed(42)
 X <- matrix(rnorm(100), nrow = 20)
 
 # Calculate CUSUM Control Chart for grouped data
-cusum_sn(X, med = 0, k = 0.5, h = 5, group_by_col = FALSE, 
+cusum_sn(X, med = 0, k = 0.5, h = 5, group_by_col = FALSE,
 plot = TRUE, side = 'two.sided')
 
 }

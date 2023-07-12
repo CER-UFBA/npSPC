@@ -66,3 +66,4 @@ shewhart_sr = function(X, mu0 = NULL, far = .0027,
   return(arl)
 
 }
+

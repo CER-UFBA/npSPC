@@ -28,16 +28,3 @@ Exact_distribution = function(n, alpha, side = "two.sided"){
               'Distribution' = dist,
               'UCL' = UCL, 'LCL' = LCL))
 }
-
-
-
-a = (Exact_distribution(13, 1/500)$Distribution)
-a
-which(cumsum(a) <= 1/500/2)
-
-barplot(Exact_distribution(13, 1/500)$Distribution)
-
-Limits_asymptotical(21, 0.001)
-
-Exact_distribution(21, 0.001)
-

@@ -13,7 +13,7 @@ shewhart_sn(X, med = 0, far = 0.0027, group_by_col = FALSE, side = "two.sided")
 
 \item{far}{The false alarm rate for control limits calculation. Default is 0.0027.}
 
-\item{group_by_col}{Logical indicating whether the observations are grouped by column. 
+\item{group_by_col}{Logical indicating whether the observations are grouped by column.
 If TRUE, the observations are transposed before further processing. Default is FALSE.}
 
 \item{side}{The side of the control chart, can be "two.sided", "lower", or "upper".}

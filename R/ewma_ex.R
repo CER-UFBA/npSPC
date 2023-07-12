@@ -26,7 +26,7 @@
 #' # Generate random grouped data
 #' X <- matrix(rnorm(100), nrow = 10)
 #' # Create the EWMA SN control chart
-#' ewma_sn(X)
+#' ewma_ex(X)
 #'
 #' @import purrr
 #' @importFrom stats median
