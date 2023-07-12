@@ -123,5 +123,3 @@ cusum_sn = function(X,
   }
 
 }
-
-
