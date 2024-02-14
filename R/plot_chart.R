@@ -28,7 +28,7 @@ plot_chart = function(ic, statistics, statistics2 = NULL,
   plot(1:length(statistics), statistics, type = c('l'),
        ylim = c(min(lcl, statistics, statistics2 ),
                 max(ucl, statistics, statistics2)),
-       xlab = "Groups", ylab = paste0(name, " Statistics"),
+       xlab = "Groups", ylab = name,
        main = "Control Chart")
 
   if(!is.null(statistics2)){
