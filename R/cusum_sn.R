@@ -109,7 +109,7 @@ cusum_sn = function(X,
       ic = 0,
       ucl = rep(ucl, length(statistics)),
       lcl = rep(lcl, length(statistics)),
-      name = "Cusum for grouped data (Based on signs)"
+      name = "CuSum for grouped data (based on signs statistics)"
     )
   } else{
     if(side == 'two.sided'){

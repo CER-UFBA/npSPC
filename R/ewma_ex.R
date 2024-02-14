@@ -108,7 +108,7 @@ ewma_ex = function(X,
       ic = cl,
       ucl = ucl,
       lcl = lcl,
-      name = "EWMA control chart (Based on the Exceedance Statistic)"
+      name = "EWMA Control Chart (based on exceedance statistics)"
     )
   } else{
     if(side == 'two.sided'){

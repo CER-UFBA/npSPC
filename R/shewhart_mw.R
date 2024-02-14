@@ -84,7 +84,7 @@ shewhart_mw <- function(X,
       ic = m*n/2,
       ucl = ucl,
       lcl = lcl,
-      name = "Shewhart Control Chart (Based on Mann Whitney Statistics)"
+      name = "Shewhart Control Chart (based on Mann-Whitney statistics)"
     )
   } else {
     if (side == 'two.sided') {

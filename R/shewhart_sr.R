@@ -59,7 +59,7 @@ shewhart_sr = function(X, mu0 = NULL, far = .0027,
   plot_chart(statistics = SR, ic = 0,
              ucl = rep(Limits$UCL, length(SR)),
              lcl = rep(Limits$LCL, length(SR)),
-             name = "SRi (Wilcoxon signed-rank)",
+             name = "Shewhart Control Chart (based on Wilcoxon signed-rank statistics)",
              side = side)
 
   arl = paste0('ARL0 utilizado: ', arl)

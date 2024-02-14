@@ -67,8 +67,8 @@ shewhart_sn <- function(X,
 
   plot_chart(statistics = SN, ic = 0,
              ucl = ucl, lcl = lcl,
-             name = "SNi (Based on signs)",
-             side = side)
+             name = "Shewhart Control Chart (based on signs statistics)",
+             side = side,)
 
   arl = paste0('ARL0 utilizado: ', arl)
   return(arl)

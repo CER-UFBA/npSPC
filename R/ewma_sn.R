@@ -89,7 +89,7 @@ ewma_sn = function(X,
       ic = rep(0, length(Z)),
       ucl = ucl,
       lcl = lcl,
-      name = "EWMA for grouped data (Based on signs)"
+      name = "EWMA for grouped data (based on signs statistics)"
     )
   } else{
     if(side == 'two.sided'){

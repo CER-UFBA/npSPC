@@ -93,7 +93,7 @@ cusum_wr = function(X,
       ic = 0,
       ucl = rep(ucl, length(statistics)),
       lcl = rep(lcl, length(statistics)),
-      name = "Cusum (Based on the Mann-Whitney)"
+      name = "CuSum Control Chart (based on Mann-Whitney statistics)"
     )
   } else{
     if(side == 'two.sided'){

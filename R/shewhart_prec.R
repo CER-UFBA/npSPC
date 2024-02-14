@@ -94,7 +94,7 @@ shewhart_prec <- function(X,
   plot_chart(statistics = w,
              ic = rep(which(cumsum(d_precedence(m, n, j)) >= 0.5)[1], length(w)),
              ucl = ucl, lcl = lcl,
-             name = "Shewhart Chart (Based on Precedence Statistic)",
+             name = "Shewhart Control Chart (based on precedence statistics)",
              side = side)
 
   arl = paste0('Used ARL0: ', arl)

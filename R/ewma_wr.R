@@ -92,7 +92,7 @@ ewma_wr = function(X,
       ic = cl,
       ucl = ucl,
       lcl = lcl,
-      name = "Ewma (Based on the Mann-Whitney)"
+      name = "EWMA Control Chart (based on Wilcoxon rank statistics)"
     )
   } else{
     if(side == 'two.sided'){
