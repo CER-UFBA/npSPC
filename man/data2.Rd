@@ -3,15 +3,15 @@
 \docType{data}
 \name{data2}
 \alias{data2}
-\title{CuSum-SR Data from Table 4.7a (Chakraborti and Graham, 2019)}
+\title{EWMA-SN Data from Table 4.6 (Chakraborti and Graham, 2019)}
 \format{
-An example of a data matrix for the CuSum-SR
+An example of a data matrix for the EWMA-SN
 }
 \usage{
 data2
 }
 \description{
 The data was extracted from the book of Chakraborti and Graham (2019)
-that contains 20 groups with 4 observations each
+that contains 10 groups with 15 observations each
 }
 \keyword{datasets}
