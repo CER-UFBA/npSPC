@@ -1,4 +1,4 @@
-Package: nonparametricspc
+Package: npSPC
 Type: Package
 Title: Non-Parametrics Statistical Process Control Charts
 Version: 1.0.0
