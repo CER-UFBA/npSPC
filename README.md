@@ -1,4 +1,4 @@
-# NonparametricSP
+# Nonparametric SPC (npSPC)
 
 This repository is associated with the publication entitled "NONPARAMETRIC SPC: SOLVING COMPLEX MINING COMPANY MONITORING TASKS WITH LOW-COMPUTATIONAL COST". This work aimed to implement the univariate nonparametric SPC control charts for the statistical monitoring of continuous data, although appropriated to small samples and asymetric/skewed data. Control charts are known for being a process visualization tool that presents the control limits of a process and the dynamics of observations:
 
