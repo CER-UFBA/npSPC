@@ -26,8 +26,8 @@ plot_chart = function(ic, statistics, statistics2 = NULL,
   }
 
   plot(1:length(statistics), statistics, type = c('l'),
-       ylim = c(min(lcl, statistics, statistics2 ),
-                max(ucl, statistics, statistics2)),
+       ylim = c(min(lcl, statistics, statistics2, na.rm = TRUE),
+                max(ucl, statistics, statistics2, na.rm = TRUE)),
        xlab = "Groups", ylab = name,
        main = "Control Chart")
 
