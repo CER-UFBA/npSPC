@@ -46,8 +46,8 @@ ewma_sn = function(X,
     X = t(X)
   }
 
-  n_plus = colSums(X > med)
-  n_less = colSums(X < med)
+  n_plus = colSums(X > med, na.rm = TRUE)
+  n_less = colSums(X < med, na.rm = TRUE)
 
   Sn = n_plus - n_less
   Z = lambda * Sn
