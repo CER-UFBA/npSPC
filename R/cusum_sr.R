@@ -68,8 +68,8 @@ cusum_sr = function(X,
   Sr_minus = rep(0, m - 1)
 
   for (t in 2:m) {
-    Sr_plus[t] = max(0, Sr_plus[t-1] + Sr[t] - k)
-    Sr_minus[t] = min(0, Sr_minus[t-1] + Sr[t] + k)
+    Sr_plus[t] = max(0, Sr_plus[t-1] + Sr[t] - k, na.rm = TRUE)
+    Sr_minus[t] = min(0, Sr_minus[t-1] + Sr[t] + k, na.rm = TRUE)
   }
 
   #Nplus = ifelse(Sn_plus > 0, 1, 0)
