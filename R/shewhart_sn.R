@@ -32,8 +32,8 @@ shewhart_sn <- function(X,
     X <- t(X)
   }
 
-  n_plus <- colSums(X > med)
-  n_less <- colSums(X < med)
+  n_plus <- colSums(X > med, na.rm = TRUE)
+  n_less <- colSums(X < med, na.rm = TRUE)
 
   SN <- n_plus - n_less
 
@@ -42,8 +42,8 @@ shewhart_sn <- function(X,
   }
 
   quantil <- max(which(pbinom(0:nrow(X), nrow(X), 1/2,
-                              lower.tail = FALSE) >= far))
-  quantil <- min(nrow(X), quantil + 1)
+                              lower.tail = FALSE) >= far), na.rm = TRUE)
+  quantil <- min(nrow(X), quantil + 1, na.rm = TRUE)
 
   far <- 2 * pbinom(0:nrow(X), nrow(X), 1/2,
                     lower.tail = FALSE)[quantil]
