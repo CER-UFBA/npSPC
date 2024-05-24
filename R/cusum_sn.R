@@ -59,8 +59,8 @@ cusum_sn = function(X,
     X = t(X)
   }
 
-  n_plus = colSums(X > med)
-  n_less = colSums(X < med)
+  n_plus = colSums(X > med, na.rm = TRUE)
+  n_less = colSums(X < med, na.rm = TRUE)
 
   Sn = n_plus - n_less
   #SNplus = SNminus = c(0, rep(0, length(Sn) - 1))
@@ -72,8 +72,8 @@ cusum_sn = function(X,
   Sn_minus = rep(0, m - 1)
 
   for (t in 2:m) {
-    Sn_plus[t] = max(0, Sn_plus[t-1] + Sn[t] - k)
-    Sn_minus[t] = min(0, Sn_minus[t-1] + Sn[t] + k)
+    Sn_plus[t] = max(0, Sn_plus[t-1] + Sn[t] - k, na.rm = TRUE)
+    Sn_minus[t] = min(0, Sn_minus[t-1] + Sn[t] + k, na.rm = TRUE)
   }
 
   #Nplus = ifelse(Sn_plus > 0, 1, 0)
