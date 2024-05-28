@@ -36,7 +36,7 @@ shewhart_sr = function(X, mu0 = NULL, far = .0027,
   m = ncol(X)
 
   Ranks = apply(abs(X - mu0), 2, rank)
-  Tplus = colSums(apply((X - mu0) > 0, 2, ifelse, 1, 0) * Ranks)
+  Tplus = colSums(apply((X - mu0) > 0, 2, ifelse, 1, 0) * Ranks, na.rm = T)
   SR = 2*Tplus - n*(n+1)/2
 
   if(exact){
