@@ -1,6 +1,6 @@
 # Nonparametric SPC (npSPC)
 
-This repository is associated with the publication entitled "NONPARAMETRIC SPC: SOLVING COMPLEX MINING COMPANY MONITORING TASKS WITH LOW-COMPUTATIONAL COST". This work aimed to implement the univariate nonparametric SPC control charts for the statistical monitoring of continuous data, although appropriated to small samples and asymetric/skewed data. Control charts are known for being a process visualization tool that presents the control limits of a process and the dynamics of observations:
+This repository is associated with the publication entitled "NONPARAMETRIC SPC: SOLVING COMPLEX MINING COMPANY MONITORING TASKS WITH LOW-COMPUTATIONAL COST". This work aimed to implement the univariate nonparametric SPC control charts for the statistical monitoring of continuous data, although appropriated to small samples and asymmetric/skewed data. Control charts are known for being a process visualization tool that presents the control limits of a process and the dynamics of observations:
 
 | File | Function | 
 | --- | --- |
@@ -26,4 +26,4 @@ This repository is associated with the publication entitled "NONPARAMETRIC SPC: 
 
 - The files `d_precedence.R` and `exact_distribution.R` calculate a test statistics, `limits_asymptotical.R` calculates nonparametric upper- and lower-limits, and `plot_chart.R` arranges the estimated statistics, bounds-limit and graphics them based on the selected control chart.
 
-- The `data1.R` is the dataset originated from the Table 4.7a (page 226) - Chakraborti and Graham book, and `data2.R` from the XXX.
+- The `data1.R` is the dataset originated from the Table 4.7a (page 226) - Chakraborti and Graham book (2019), and `data2.R` from Tabela 4.6 (page 22).
